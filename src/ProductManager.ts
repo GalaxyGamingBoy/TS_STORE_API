@@ -25,9 +25,17 @@ export default class ProductManager {
     let returnCode: boolean = false;
 
     products.forEach((e) => {
-      if (e.name == name) {
-        returnCode = true;
-      }
+      if (e.name == name) returnCode = true;
+    });
+
+    return returnCode;
+  }
+
+  productPriceExists(price: Number): boolean {
+    let returnCode: boolean = false;
+
+    products.forEach((e) => {
+      if (e.price == price.toString()) returnCode = true;
     });
 
     return returnCode;
@@ -72,9 +80,21 @@ export default class ProductManager {
     if (this.productNameExists(name)) {
       let tmp: Array<string> = [];
       products.forEach((value) => {
-        if (value.name == name) {
-          tmp.push(JSON.stringify(value));
-        }
+        if (value.name == name) tmp.push(JSON.stringify(value));
+      });
+      returnValue = arrayToJSON(tmp);
+    }
+
+    return returnValue;
+  }
+
+  getProductByPrice(price: number): any {
+    let returnValue: any = 404;
+
+    if (this.productPriceExists(price)) {
+      let tmp: Array<string> = [];
+      products.forEach((value) => {
+        if (value.price == price.toString()) tmp.push(JSON.stringify(value));
       });
       returnValue = arrayToJSON(tmp);
     }
