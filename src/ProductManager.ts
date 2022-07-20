@@ -4,17 +4,20 @@ import { addProductErrors } from "./enums";
 
 export default class ProductManager {
   idValid(id: string): addProductErrors {
+    let returnCode: addProductErrors;
+    returnCode = addProductErrors.SUCCESS;
+
     if (id !== "NaN") {
       products.forEach((e) => {
-        if (id == e.id) {
-          return addProductErrors.CONFLICT;
+        if (id == e.id.toString()) {
+          returnCode = addProductErrors.CONFLICT;
         }
       });
     } else {
-      return addProductErrors.BAD_REQUEST;
+      returnCode = addProductErrors.BAD_REQUEST;
     }
 
-    return addProductErrors.SUCCESS;
+    return returnCode;
   }
 
   addProduct(product: Product): number {
@@ -31,5 +34,22 @@ export default class ProductManager {
     }
 
     return idValidResult;
+  }
+
+  getProductByID(id: Number): any {
+    let idValidResult: addProductErrors = this.idValid(id.toString());
+    let returnValue: any;
+
+    if (idValidResult == addProductErrors.CONFLICT) {
+      products.forEach((value) => {
+        if (value.id == id.toString()) {
+          returnValue = value;
+        }
+      });
+    } else {
+      returnValue = 404;
+    }
+
+    return returnValue;
   }
 }
