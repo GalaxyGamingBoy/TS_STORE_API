@@ -2,24 +2,26 @@
     "name": "ts-airlinebookingsystem",
     "version": "1.0.0",
     "description": "",
-    "main": "index.ts",
+    "main": "src/index.ts",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "build": "tsc --build",
-      "clean": "tsc --build --clean"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "ts-node .",
+        "clean": "tsc --build --clean"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/GalaxyGamingBoy/TS-AirlineBookingSystem.git"
+        "type": "git",
+        "url": "git+https://github.com/GalaxyGamingBoy/TS-AirlineBookingSystem.git"
     },
     "author": "GalaxyGamingBoy",
     "license": "MIT",
     "bugs": {
-      "url": "https://github.com/GalaxyGamingBoy/TS-AirlineBookingSystem/issues"
+        "url": "https://github.com/GalaxyGamingBoy/TS-AirlineBookingSystem/issues"
     },
     "homepage": "https://github.com/GalaxyGamingBoy/TS-AirlineBookingSystem#readme",
     "dependencies": {
-      "express": "^4.17.3",
-      "ts-node": "^10.7.0"
+        "cors": "^2.8.5",
+        "env-var": "^7.1.1",
+        "express": "^4.17.3",
+        "ts-node": "^10.8.2"
     }
-  }
+}
