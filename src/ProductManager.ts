@@ -1,6 +1,7 @@
 import products from "../res/products.json";
 import Product from "./Product";
 import { addProductErrors } from "./enums";
+import { arrayToJSON } from "./utils";
 
 export default class ProductManager {
   idValid(id: string): addProductErrors {
@@ -16,6 +17,18 @@ export default class ProductManager {
     } else {
       returnCode = addProductErrors.BAD_REQUEST;
     }
+
+    return returnCode;
+  }
+
+  productNameExists(name: string): boolean {
+    let returnCode: boolean = false;
+
+    products.forEach((e) => {
+      if (e.name == name) {
+        returnCode = true;
+      }
+    });
 
     return returnCode;
   }
@@ -48,6 +61,22 @@ export default class ProductManager {
       });
     } else {
       returnValue = 404;
+    }
+
+    return returnValue;
+  }
+
+  getProductByName(name: string): any {
+    let returnValue: any = 404;
+
+    if (this.productNameExists(name)) {
+      let tmp: Array<string> = [];
+      products.forEach((value) => {
+        if (value.name == name) {
+          tmp.push(JSON.stringify(value));
+        }
+      });
+      returnValue = arrayToJSON(tmp);
     }
 
     return returnValue;

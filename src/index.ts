@@ -37,6 +37,18 @@ webApp.get("/getProductByID", (req, res) => {
   }
 });
 
+webApp.get("/getProductByName", (req, res) => {
+  const name: string = req.query.name;
+
+  let productValue = productManager.getProductByName(name);
+
+  if (productValue == 404) {
+    res.status(404).end(`Product with name ${name}, not found`);
+  } else {
+    res.status(200).end(productValue);
+  }
+});
+
 webApp.post("/addProduct", (req, res) => {
   const id: string = req.query.id;
   const name: string = req.query.name;
